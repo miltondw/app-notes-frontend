@@ -1,3 +1,5 @@
+### Instalar ES7 react/redux/graphq
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
