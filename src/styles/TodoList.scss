@@ -56,39 +56,91 @@ header {
 
 .content__users {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 60% 50%;
     margin-top: 1em;
     width: 100%;
-    .form__card {
-        border: 1px solid;
-        width: 40%;
-        text-align: center;
-        height: 10em;
-        display: grid;
-        background-color: rgb(0 160 154 / 37%);
-        .form__title {
+    .form{
+        &__card {
+            border: 1px solid;
+            width: 52%;
+            text-align: center;
+            height: 12em;
+            display: grid;
+            background-color: rgba(0, 160, 154, 0.37);
+            
+            input[type="text"] {
+                width: 92%;
+                padding: .3em;
+                height: 2em;
+                margin: auto;
+            }
+        }
+        &__title {
             padding-top: .5em;
             color: #fffbfb;
             font-weight: bold;
+            font-size: 2em;
         }
-        input[type="text"] {
-            width: 93%;
-            padding: .3em;
-            height: 2em;
+        form{
+            display: grid;
+        }
+        .btn{
+            border-radius: 5px;
+            cursor: pointer;
+        } 
+        .btn:active{
+            transform: scale(.8);
+        }
+        .btn-user{
+            width: 30%;
+            color: #fff;
+            background-color: #008380;
+            text-align: center;
+            margin: auto;
+            padding: 0.4em;
         }
     }
     
-    
     .list_users {
-        list-style: none;
-        border: 1px solid;
-        padding: 0.6em;
+        grid-column: 2/-1;
+        width: 100%;
         display: grid;
-        height: 2em;
-        justify-content: center;
-        background-color: #e84e1bcc;
-        color: #fff;
-        align-items: center;
-        box-shadow: -7px 1px 11px 6px #ccc;
+        grid-template-columns: repeat(2,1fr);
+        &__item{
+            list-style: none;
+            border: 1px solid;
+            padding: 0.6em;
+            display: grid;
+            height: 2em;
+            justify-content: center;
+            background-color: #e84e1bcc;
+            color: #fff;
+            align-items: center;
+            box-shadow: -7px 1px 11px 6px #ccc;
+            margin: 0.5em;
+            cursor: pointer;
+            position: relative;
+            .btn_delete{
+                display: flex;
+                content: "X";
+                position: absolute;
+                border-radius: 50%;
+                background: red;
+                padding: .5em;
+                width: 10px;
+                height: 10px;
+                align-items: center;
+                justify-content: center;
+                top: -10px;
+                right: -7px;
+                transition-property: transform;
+                transition-duration: 0.7s;
+                transition-timing-function: ease-in-out;
+                transform: scale(0);
+            }
+            &:hover .btn_delete{
+                transform:scale(1)
+            }
+        }
     }
 }
