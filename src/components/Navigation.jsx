@@ -12,7 +12,7 @@ class Navigation extends Component {
                     <ul className="nav__ul">
                         <li className="nav__li">   
                             <NavLink to="/" exact  activeClassName="link__active" >Home</NavLink>
-                            <NavLink to="/user" activeClassName="link__active" >User</NavLink>
+                            <NavLink to="/user" activeClassName="link__active" >Create User</NavLink>
                             <NavLink to="/create" activeClassName="link__active">Create Note</NavLink>
                             <NavLink to="/edit/:id" activeClassName="link__active">Edit Note</NavLink>
                         </li>

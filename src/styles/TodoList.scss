@@ -144,3 +144,51 @@ header {
         }
     }
 }
+
+// Createa notes
+
+.note {
+    display: grid;
+    width: 35%;
+    margin: auto;
+    position: relative;
+    top: 2em;
+    border: 1px solid #ccc;
+    background-color: #00a08aab;
+    box-shadow: 2px 0px 4px;
+    grid-gap: 1em;
+    padding: 1em;
+    justify-items: center;
+    &__title {
+        font-size: 2em;
+        text-align: center;
+        color: #464040;
+    }
+    select {
+        width: 17em;
+        height: 2em;
+        color: #6b6363;
+    }
+   &__form {
+        display: grid;
+        justify-content: center;
+        width: 13em;
+        grid-gap: 1em;
+        input[type="text"] {
+            width: 17em;
+            height: 2em;
+        }
+        textarea {
+            max-width: 17em;
+            max-height: 7em;
+        }
+        button.btn.note__btn {
+            width: 43%;
+            margin: auto;
+            background: #e84e1b;
+            color: #fff;
+            padding: .2em;
+            font-size: 1em;
+        }
+    }
+}
