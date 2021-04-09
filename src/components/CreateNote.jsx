@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { NavLink } from 'react-router-dom';
 
 class CreateNote extends Component {
 
@@ -16,14 +17,21 @@ class CreateNote extends Component {
    async componentDidMount(){
       const res= await axios.get('http://localhost:4000/api/users')
       this.setState({
-          users:res.data.map(user => user.username)
+          users:res.data.map(user => user.username),
+          userSelected:res.data[0].username
       })
-
     }
 
-    onSubmit = e=>{
-        console.log(this.state.title,this.state.description)
+    onSubmit = async(e)=>{
         e.preventDefault()
+        const newNote = {
+            title:this.state.title,
+            description:this.state.description,
+            author:this.state.userSelected,
+            date:this.state.date
+        }
+        await axios.post('http://localhost:4000/api/notes',newNote)
+       
     }
     onInputChange=e=>{
      this.setState({
@@ -62,11 +70,13 @@ class CreateNote extends Component {
                         onChange={this.onChangeDate}
                     />
                     </div>
+                    <NavLink exact to="/" >
                     <button 
                     type="submit" 
                     className="btn note__btn">
                         Sabe
                     </button>
+                    </NavLink>
                     </form>
             </div>
         );
