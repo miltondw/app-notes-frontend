@@ -1,37 +1,47 @@
-import axios from 'axios';
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import axios from 'axios'
+import {format} from  'timeago.js'
+import {Link} from 'react-router-dom'
 
-class NoteList extends Component {
+export default class NoteList extends Component {
     state={
-        notes:[]
+        notes:[],
+        uri:'http://localhost:4000/api/notes/',
     }
-    async componentDidMount(){
-      const res= await axios.get('http://localhost:4000/api/notes')
-      this.setState({
-         notes:res.data
-     })
+    getNotes=async()=>{
+        const res =  await axios.get(this.state.uri)
+        this.setState({
+            notes:res.data
+        })
+    }
+    componentDidMount(){
+        this.getNotes()
+    }
+    deleteNote=async id=>{
+       await axios.delete(this.state.uri+id)
+       this.getNotes()
     }
     render() {
         return (
-            <div className="noteList">
+            <div>
                 {
-                    this.state.notes.map(note =>(<div className="noteList__card" key={note._id}>
-                        <h2 className="noteList__title">{note.title}</h2>
-                        <h3 className="noteList__author" >{note.author}</h3>
-                        <p className="noteList__description">{note.description}</p>
-                        <div className="noteList-content__btn">
-                        <button className="noteList-btn__edit">
-                            Edit
-                        </button>
-                        <button className="noteList-btn__delete">
-                            Delete
-                        </button>
+                    this.state.notes.map(note=>(
+                        <div className="note" key={note._id}>
+                            <h2>{note.title} </h2>
+                            <p>{note.author}</p>
+                            <p>{note.description}</p>
+                            <p>{format(note.date)}</p>
+                            <button onClick={()=>this.deleteNote(note._id)} >
+                                delete
+                            </button>
+                            <Link to={'/edit/'+note._id}> 
+                                Edit
+                            </Link>
                         </div>
-                    </div>))
+
+                    ))
                 }
             </div>
-        );
+        )
     }
 }
-
-export default NoteList;
